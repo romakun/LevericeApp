@@ -15,7 +15,7 @@
  - Tests
    * BaseTest
  - Utils
-    * AllureUtils
+    * AllureUtils 
  
 
 
