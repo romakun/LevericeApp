@@ -1,5 +1,6 @@
 package pages.authorizationPages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;
 
 import org.openqa.selenium.By;
@@ -7,6 +8,7 @@ import org.testng.Assert;
 import pages.BasePage;
 
 import static com.codeborne.selenide.Selectors.withText;
+import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.By.name;
 import static org.openqa.selenium.By.xpath;
@@ -36,7 +38,7 @@ public class AuthorizationPage extends BasePage {
     @Override
     public AuthorizationPage isPageOpened() {
         try {
-            $(TUTORIAL_IMAGE_CSS, "Ждем, пока страница загрузится");
+            $(TUTORIAL_IMAGE_CSS).shouldBe(Condition.visible);
             return this;
         } catch (ElementShould e) {
             Assert.fail("Страница почему-то не загрузилась");
@@ -45,42 +47,51 @@ public class AuthorizationPage extends BasePage {
     }
 
     public AuthorizationPage clickSignIn() {
+        $(BUTTON_SIGN_IN_XPATH).shouldBe(Condition.visible);
         $(BUTTON_SIGN_IN_XPATH).click();
         return this;
     }
 
     public AuthorizationPage enterEmail(String email) {
-        $(EMAIL_INPUT, "Вводим Email " + email).setValue(email);
+        $(EMAIL_INPUT).shouldBe(Condition.visible);
+        $(EMAIL_INPUT).setValue(email);
         return this;
     }
 
     public AuthorizationPage clickButton() {
+        $(ACTIVE_BUTTON_NEXT_STEP).shouldBe(Condition.visible);
         $(ACTIVE_BUTTON_NEXT_STEP).click();
         return this;
     }
 
     public AuthorizationPage enterCode(String code) {
+        $(INPUT_VALIDATION_CODE).shouldBe(Condition.visible);
         $(INPUT_VALIDATION_CODE).setValue(code);
         return this;
     }
 
     public AuthorizationPage fillInUserNames(String fname, String lname) {
+        $(FIRST_NAME_INPUT).shouldBe(Condition.visible);
         $(FIRST_NAME_INPUT).setValue(fname);
+        $(LAST_NAME_INPUT).shouldBe(Condition.visible);
         $(LAST_NAME_INPUT).setValue(lname);
         return this;
     }
 
     public AuthorizationPage fillInWorkspaceName(String workName) {
+        $(INPUT_WORKSPACE_NAME_CSS).shouldBe(Condition.visible);
         $(INPUT_WORKSPACE_NAME_CSS).setValue(workName);
         return this;
     }
 
     public AuthorizationPage clickCreateNewWorkspace() {
+        $(withText(CREATE_NEW_WORKSPACE_LINK_TEXT)).shouldBe(Condition.visible);
         $(withText(CREATE_NEW_WORKSPACE_LINK_TEXT)).click();
         return this;
     }
 
     public AuthorizationPage enterInMyWorkSpace(String workSpaceName) {
+        $(withText(workSpaceName)).shouldBe(Condition.visible);
         $(withText(workSpaceName)).click();
         return this;
     }
@@ -91,6 +102,7 @@ public class AuthorizationPage extends BasePage {
     }
 
     public boolean checkPage() {
+        $(PAGE_HEADER_CSS).shouldBe(Condition.visible);
         return $(PAGE_HEADER_CSS).getText().equals("Introduce yourself");
     }
 }

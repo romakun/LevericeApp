@@ -1,14 +1,13 @@
 package pages.mailHogPages;
 
 import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementShould;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.BasePage;
-
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -44,7 +43,7 @@ public class MailHogPage extends BasePage {
     @Override
     public MailHogPage isPageOpened() {
         try {
-            $(byText(DISCONNECT_BUTTON_TEXT), "Ждем, пока страница загрузится");
+            $(byText(DISCONNECT_BUTTON_TEXT)).shouldBe(Condition.visible);
             return this;
         } catch (ElementShould e) {
             Assert.fail("Страница почему-то не загрузилась");
