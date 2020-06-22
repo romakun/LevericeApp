@@ -53,7 +53,12 @@ public abstract class BasePage {
     }
 
     public ElementsCollection $$(String elements, String logMessage) {
+        $$(elements);
         log.info(logMessage);
+        return Selenide.$$(elements);
+    }
+
+    public ElementsCollection $$(String elements) {
         return Selenide.$$(elements);
     }
 

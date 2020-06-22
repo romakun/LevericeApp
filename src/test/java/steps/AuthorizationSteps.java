@@ -1,92 +1,76 @@
 package steps;
 
-import com.codeborne.selenide.ex.ElementNotFound;
 import io.qameta.allure.Step;
-import org.testng.Assert;
 import pages.authorizationPages.*;
 import pages.mailHogPages.MailHogPage;
 
 public class AuthorizationSteps {
 
     AuthorizationPage authPage;
-    EnterEmailPage emailPage;
     MailHogPage mailHog;
-    EnterValidationCodePage codePage;
-    IntroduceYourselfPage namesPage;
-    WorkspacePage workPage;
-    NewWorkspacePage newWorkPage;
 
     public AuthorizationSteps() {
         authPage = new AuthorizationPage();
-        emailPage = new EnterEmailPage();
         mailHog = new MailHogPage();
-        codePage = new EnterValidationCodePage();
-        namesPage = new IntroduceYourselfPage();
-        newWorkPage = new NewWorkspacePage();
-        workPage = new WorkspacePage();
+
     }
 
     @Step("Open Leverice and sign in with Email='{email}'")
-    public AuthorizationSteps signIn(String email){
+    public AuthorizationSteps signIn(String email) {
         authPage
                 .openPage()
-                .clickSignIn();
-        emailPage
-                .openPage()
+                .clickSignIn()
                 .enterEmail(email)
-                .clickContinueButton();
+                .clickButton();
         return this;
     }
 
     @Step
-    public AuthorizationSteps getEmailCodeOutOfMailHog(){
+    public AuthorizationSteps getEmailCodeOutOfMailHog(String userEmail) {
         mailHog
                 .openPage()
-                .findEmail()
+                .findEmail(userEmail)
                 .getValidationCode()
                 .closeMailHogTab();
-     return this;
-    }
-
-    @Step
-    public AuthorizationSteps enterCode(String code){
-        codePage
-                .openPage()
-                .enterCode(code);
         return this;
     }
 
     @Step
-    public AuthorizationSteps fillInUserNames(String fname, String lname){
-        namesPage
-                .openPage()
+    public AuthorizationSteps enterCode(String code) {
+        authPage.enterCode(code);
+        return this;
+    }
+
+    @Step
+    public AuthorizationSteps fillInUserNames(String fname, String lname) {
+        authPage
                 .fillInUserNames(fname, lname)
-                .clickContinueButton();
+                .clickButton();
         return this;
     }
 
     @Step
-    public AuthorizationSteps clickCreateWorkspace(){
-        workPage
-                .openPage()
-                .clickCreateNewWorkspace();
+    public AuthorizationSteps clickCreateWorkspace() {
+        authPage.clickCreateNewWorkspace();
         return this;
     }
 
     @Step
-    public AuthorizationSteps fillInWorkSpaceName(String workName){
-        newWorkPage
-                .openPage()
+    public AuthorizationSteps fillInWorkSpaceName(String workName) {
+        authPage
                 .fillInWorkspaceName(workName)
-                .clickCreateButton();
+                .clickButton();
         return this;
     }
 
     @Step
-    public AuthorizationSteps enterInMySpace(String workSpaceName){
-        workPage
-                .openPage()
-                .enterInMyWorkSpace(workSpaceName);
+    public AuthorizationSteps enterInMySpace(String workSpaceName) {
+        authPage.enterInMyWorkSpace(workSpaceName);
         return this;
+    }
+
+    @Step
+    public boolean checkPage() {
+        return authPage.checkPage();
     }
 }
