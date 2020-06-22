@@ -44,7 +44,6 @@ public class BaseTest {
     public void authorizeInLeverice() {
         try {
             userProp.loadFromXML(Files.newInputStream(userFile));
-            codeProp.loadFromXML(Files.newInputStream(codeFile));
         } catch (Exception e) {
             Assert.fail("Не удалось загрузить файл с данными пользователя");
         }
