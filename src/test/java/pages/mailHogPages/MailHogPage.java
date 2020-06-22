@@ -1,6 +1,6 @@
 package pages.mailHogPages;
 
-import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.ex.ElementShould;
@@ -34,7 +34,7 @@ public class MailHogPage extends BasePage {
 
     @Override
     public MailHogPage openPage() {
-        Selenide.executeJavaScript("window.open();");
+       Selenide.executeJavaScript("window.open();");
         switchTo().window(1);
         open(URL);
         isPageOpened();
@@ -52,28 +52,30 @@ public class MailHogPage extends BasePage {
         }
     }
 
-    public MailHogPage findEmail() {
-        List<SelenideElement> emailList = $$(EMAILS_CSS, "");
-        emailList.get(0).click();
+    public MailHogPage findEmail(String userEmail) {
+        List<SelenideElement> emailList = $$(EMAILS_CSS).shouldBe(CollectionCondition.sizeGreaterThan(0));
+        for(int i = 0; i < emailList.size(); i++){
+           if (emailList.get(i).find(".ng-binding.ng-scope").getText().equals(userEmail)){
+               emailList.get(i).click();
+               i = emailList.size();
+           }
+        }
         return this;
     }
 
     public MailHogPage getValidationCode() {
         switchTo().frame($(MAIL_IFRAME_ID));
-
         try {
-
             properties.setProperty("validationCode", $(VALIDATION_CODE_CSS).getText());
             properties.storeToXML(Files.newOutputStream(path), "File with user email && code");
-
-        } catch (IOException io) {
-            io.printStackTrace();
+        } catch (Exception e) {
+            Assert.fail("Не удалось сохранить validation code в файл");
         }
         return this;
     }
 
-    public void closeMailHogTab(){
-        Selenide.executeJavaScript( "window.close()");
+    public void closeMailHogTab() {
+        Selenide.closeWindow();
         switchTo().window(0);
     }
 }
