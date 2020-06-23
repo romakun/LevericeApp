@@ -73,4 +73,10 @@ public class AuthorizationSteps {
     public boolean checkPage() {
         return authPage.checkPage();
     }
+
+    @Step
+    public void checkAuthorizationInLeverice() {
+        authPage.checkAuthorization();
+    }
+
 }
