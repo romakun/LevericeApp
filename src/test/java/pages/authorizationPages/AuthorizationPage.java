@@ -97,6 +97,7 @@ public class AuthorizationPage extends BasePage {
     }
 
     public AuthorizationPage clickJoinWorkspaceByInvitationCode() {
+        $(withText(JOIN_WORKSPACE_INVITATION_LINK_TEXT)).shouldBe(Condition.visible);
         $(withText(JOIN_WORKSPACE_INVITATION_LINK_TEXT)).click();
         return this;
     }
