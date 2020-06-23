@@ -27,6 +27,7 @@ public class AuthorizationPage extends BasePage {
     private static final String CREATE_NEW_WORKSPACE_LINK_TEXT = "Create a new workspace";
     private static final String JOIN_WORKSPACE_INVITATION_LINK_TEXT = "Join workspace using invitation code";
     private static final String PAGE_HEADER_CSS = ".heading";
+    private static final String CONNECTION_INDICATOR_CSS = ".connection-indicator.green";
 
     @Override
     public AuthorizationPage openPage() {
@@ -105,5 +106,15 @@ public class AuthorizationPage extends BasePage {
     public boolean checkPage() {
         $(PAGE_HEADER_CSS).shouldBe(Condition.visible);
         return $(PAGE_HEADER_CSS).getText().equals("Introduce yourself");
+    }
+
+    public AuthorizationPage checkAuthorization() {
+        try {
+            $(CONNECTION_INDICATOR_CSS).shouldBe(Condition.visible);
+            return this;
+        } catch (ElementShould e) {
+            Assert.fail("Страница почему-то не загрузилась");
+            return null;
+        }
     }
 }

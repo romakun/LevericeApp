@@ -60,10 +60,12 @@ public class BaseTest {
             authSteps
                     .fillInUserNames("First", "User")
                     .clickCreateWorkspace()
-                    .fillInWorkSpaceName(userProp.getProperty("workSpaceName"));
+                    .fillInWorkSpaceName(userProp.getProperty("workSpaceName"))
+                    .checkAuthorizationInLeverice();
         } else {
             authSteps
-                    .enterInMySpace(userProp.getProperty("workSpaceName"));
+                    .enterInMySpace(userProp.getProperty("workSpaceName"))
+                    .checkAuthorizationInLeverice();
         }
     }
 
