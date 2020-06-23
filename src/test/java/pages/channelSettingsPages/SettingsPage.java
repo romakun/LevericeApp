@@ -1,4 +1,4 @@
-package pages.channelSettingsPage;
+package pages.channelSettingsPages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
