@@ -37,7 +37,7 @@ public class BaseTest {
             Assert.fail("Не удалось сохранить в файл данные пользователя");
         }
 
-        Configuration.headless = true;
+        Configuration.headless = false;
         Configuration.startMaximized = true;
         Configuration.clickViaJs = true;
         Configuration.screenshots = true;
