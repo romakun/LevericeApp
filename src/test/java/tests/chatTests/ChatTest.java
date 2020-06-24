@@ -5,7 +5,7 @@ import tests.BaseTest;
 
 public class ChatTest extends BaseTest {
 
-    @Test (description = "Тест на отправку сообщения")
+    @Test (description = "Тест на отправку сообщения", priority = 1)
     public void sendMessage () {
         chatSteps.sendMessage("Hello");
     }
