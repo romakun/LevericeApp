@@ -11,6 +11,7 @@ public class CreateFolderByCommandLinkTest extends BaseTest {
 
     @Test
     public void createFolderByCommandLinkTest(){
+        authorizeInLeverice();
         wsElementsSteps
                 .clickByMenuItem("Create new Folder")
                 .checkModalHeader("Creating Folder");

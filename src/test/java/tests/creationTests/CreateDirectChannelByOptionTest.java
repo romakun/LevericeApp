@@ -7,6 +7,7 @@ public class CreateDirectChannelByOptionTest extends BaseTest {
 
     @Test
     public void createDirectChannelByOptionTest() {
+        authorizeInLeverice();
         setSteps
                 .openSettingsByContext("direct")
                 .clickByOption("New Direct");

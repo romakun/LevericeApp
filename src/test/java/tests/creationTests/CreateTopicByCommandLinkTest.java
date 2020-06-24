@@ -11,6 +11,7 @@ public class CreateTopicByCommandLinkTest extends BaseTest {
 
     @Test
     public void createTopicByCommandLinkTest() {
+        authorizeInLeverice();
         setSteps
                 .openSettingsByContext("direct")
                 .clickByOption("Expand");

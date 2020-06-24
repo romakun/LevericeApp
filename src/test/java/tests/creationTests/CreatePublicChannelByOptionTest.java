@@ -12,6 +12,7 @@ public class CreatePublicChannelByOptionTest extends BaseTest {
 
     @Test
     public void createPublicChannelByOptionTest(){
+        authorizeInLeverice();
         setSteps
                 .openSettingsByIcon("MyTestWorkSpace")
                 .clickByOption("New")

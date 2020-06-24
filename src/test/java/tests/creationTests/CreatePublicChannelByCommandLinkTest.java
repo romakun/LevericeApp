@@ -13,6 +13,7 @@ public class CreatePublicChannelByCommandLinkTest extends BaseTest {
 
     @BeforeMethod
     public void createFolderByCommandLinkTest(){
+        authorizeInLeverice();
         wsElementsSteps
                 .clickByMenuItem("Create new Folder")
                 .checkModalHeader("Creating Folder");

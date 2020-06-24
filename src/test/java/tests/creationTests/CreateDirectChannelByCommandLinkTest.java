@@ -7,6 +7,7 @@ public class CreateDirectChannelByCommandLinkTest extends BaseTest {
 
     @Test
     public void createDirectChannelByCommandLinkTest() {
+        authorizeInLeverice();
         setSteps
                 .openSettingsByContext("direct")
                 .clickByOption("Expand");

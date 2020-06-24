@@ -22,6 +22,7 @@ public class InviteByLInkTest extends BaseTest {
 
     @Test
     public void inviteByLInkTest(){
+        authorizeInLeverice();
         wsElementsSteps
                 .clickByMenuItem("Invite Users");
         invSteps.clickCopyLinkButton();

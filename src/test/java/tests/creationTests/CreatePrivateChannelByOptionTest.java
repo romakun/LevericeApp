@@ -11,6 +11,7 @@ public class CreatePrivateChannelByOptionTest extends BaseTest {
 
     @Test
     public void createPrivateChannelByOptionTest() {
+        authorizeInLeverice();
         setSteps
                 .openSettingsByIcon("MyTestWorkSpace")
                 .clickByOption("New")

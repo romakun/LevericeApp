@@ -11,6 +11,7 @@ public class CreateNewTopicByOptionTest extends BaseTest {
 
     @Test
     public void createNewTopicByOptionTest(){
+        authorizeInLeverice();
         setSteps
                 .openSettingsByContext("direct")
                 .clickByOption("Expand")

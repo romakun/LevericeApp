@@ -11,6 +11,7 @@ public class CreateFolderByOptionTest extends BaseTest {
 
     @Test
     public void createFolderByOptionTest(){
+        authorizeInLeverice();
         setSteps
                 .openSettingsByIcon("MyTestWorkSpace")
                 .clickByOption("New")

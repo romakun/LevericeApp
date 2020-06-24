@@ -37,19 +37,17 @@ public class BaseTest {
             Assert.fail("Не удалось сохранить в файл данные пользователя");
         }
 
-        Configuration.headless = false;
-        Configuration.startMaximized = true;
+        Configuration.headless = true;
+        Configuration.browserSize = "1920x1080";
         Configuration.clickViaJs = true;
         Configuration.screenshots = true;
-        Configuration.timeout = 6000000;
+        Configuration.timeout = 6000;
         authSteps = new AuthorizationSteps();
         wsElementsSteps = new WorkSpaceElementsSteps();
         modalSteps = new CreateModalSteps();
         setSteps = new SettingSteps();
         invSteps = new InviteSteps();
         chatSteps = new ChatSteps();
-
-        authorizeInLeverice();
     }
 
     public void authorizeInLeverice() {

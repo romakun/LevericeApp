@@ -15,6 +15,7 @@ public class SendMessageOtherUserTest extends BaseTest {
 
     @BeforeMethod
     public void inviteByEmail(){
+        authorizeInLeverice();
         wsElementsSteps
                 .clickByMenuItem("Invite Users");
         invSteps

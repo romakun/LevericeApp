@@ -1,5 +1,6 @@
 package tests.inviteTests;
 
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import models.GenerateData;
 import org.testng.annotations.Test;
@@ -14,6 +15,7 @@ public class InviteByEmailTest extends BaseTest {
 
     @Test
     public void inviteByEmailTest(){
+        authorizeInLeverice();
         wsElementsSteps
                 .clickByMenuItem("Invite Users");
         invSteps
@@ -25,6 +27,8 @@ public class InviteByEmailTest extends BaseTest {
         invSteps
                 .checkUserInvited(randomEmail);
         Selenide.closeWebDriver();
+        setupDriver();
+        Configuration.browserSize = "1920x1080";
         authSteps
                 .openNewWindow()
                 .findMail(randomEmail)
