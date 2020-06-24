@@ -7,6 +7,7 @@ import org.testng.Assert;
 import pages.BasePage;
 
 import static com.codeborne.selenide.Condition.cssClass;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.xpath;
 
@@ -21,9 +22,12 @@ public class CreatingModalPage extends BasePage {
     private static final String OPTION_BUTTON_CSS = ".option-button";
     private static final String CLOSE_WINDOW_ICON_CSS = ".close-window-icon .close-window-icon";
     private static final String CANCEL_BUTTON_CSS = ".button-cancel";
-    private static final String ACCEPT_BUTTON_CSS = ".button-accept";
+    private static final By ACCEPT_BUTTON = xpath("//div[@class='modal-window-content__wrapper']//div[contains(@class,'button-accept')]");
     private static final String SORT_SUBCHANNELS_DROPDOWN_CSS = ".dropdown-list";
     private static final String MAKE_FOLDER_PRIVATE_TOGGLE_CSS = ".toggle";
+    private static final String NEW_DIRECT_REQUIRED_INPUT_CSS = ".field-item";
+    String userNameLocator = "//div[@class='user-name' and contains(text(),'%s')]";
+
 
     private String Creating_Public_Channel = "Creating Public Channel";
     private String Creating_Private_Channel = "Creating Private Channel";
@@ -99,9 +103,9 @@ public class CreatingModalPage extends BasePage {
     }
 
     public CreatingModalPage clickAcceptButton() {
-        try{
-            $(ACCEPT_BUTTON_CSS).shouldBe(Condition.visible);
-            $(ACCEPT_BUTTON_CSS).click();
+        try {
+            $(ACCEPT_BUTTON).shouldBe(Condition.visible);
+            $(ACCEPT_BUTTON).click();
         } catch (ElementShould e) {
             Assert.fail("Кнопка accept недоступна");
         }
@@ -117,6 +121,23 @@ public class CreatingModalPage extends BasePage {
     }
 
     public CreatingModalPage chooseSortSubChannels() {
+        return this;
+    }
+
+    public CreatingModalPage clickByRequiredInput() {
+        $(NEW_DIRECT_REQUIRED_INPUT_CSS).shouldBe(Condition.visible);
+        $(NEW_DIRECT_REQUIRED_INPUT_CSS).click();
+        return this;
+    }
+
+    public CreatingModalPage chooseUserForNewDirect(String userName) {
+        By userNameXpath = xpath(String.format(userNameLocator, userName));
+        $(userNameXpath).click();
+        return this;
+    }
+
+    public CreatingModalPage checkUserAddedToInput(String userName) {
+        $(NEW_DIRECT_REQUIRED_INPUT_CSS).find(withText(userName)).shouldBe(Condition.visible);
         return this;
     }
 }
