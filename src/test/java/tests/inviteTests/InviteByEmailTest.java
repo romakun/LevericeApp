@@ -11,15 +11,20 @@ public class InviteByEmailTest extends BaseTest {
         wsElementsSteps
                 .clickByMenuItem("Invite Users");
         invSteps
-                .typeEmailInInput("stttttt@mailinator.com")
+                .typeEmailInInput("buba@mailinator.com")
                 .clickInviteButton();
+        wsElementsSteps
+                .clickByMenuItem("direct")
+                .checkChannelOpened("direct");
+        invSteps
+                .checkUserInvited("buba@mailinator.com");
         Selenide.closeWebDriver();
         authSteps
                 .openNewWindow()
-                .findMail("stttttt@mailinator.com")
+                .findMail("buba@mailinator.com")
                 .goToInvitationUrl()
                 .closeMailHog()
-                .fillInUserName("Param2", "PamPam2")
+                .fillInUserName("Param22", "PamPam22")
                 .checkAuthorizationInLeverice();
     }
 }

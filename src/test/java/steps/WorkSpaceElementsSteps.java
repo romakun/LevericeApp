@@ -25,11 +25,9 @@ public class WorkSpaceElementsSteps {
         return this;
     }
 
-    @Step("Проверяем создание")
-    public WorkSpaceElementsSteps checkCreationAndOpen(String itemName) {
-        wsElementsPage
-                .isPageOpened()
-                .channelOpened(itemName);
+    @Step("Проверяем открытие канала")
+    public WorkSpaceElementsSteps checkChannelOpened(String itemName) {
+        wsElementsPage.channelOpened(itemName);
         return this;
     }
 

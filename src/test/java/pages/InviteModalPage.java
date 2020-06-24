@@ -14,6 +14,7 @@ public class InviteModalPage extends BasePage{
     private static final By MODAL_HEADER = xpath("//div[contains(@class,'heading') and contains(text(),'Invite other users to Workspace')]");
     private static final By EMAIL_INPUT = xpath("//textarea[contains(@placeholder,'Enter email')]");
     private static final String ACTIVE_ACCEPT_BUTTON_CSS = ".wizard-modal__inner .action-button.active";
+    private static final String COPY_LINK_BUTTON_CSS = ".apply-button";
 
     @Override
     public InviteModalPage openPage() {
@@ -40,6 +41,13 @@ public class InviteModalPage extends BasePage{
     public InviteModalPage clickInviteButton(){
         $(ACTIVE_ACCEPT_BUTTON_CSS).find(withText("Invite")).shouldBe(Condition.visible);
         $(ACTIVE_ACCEPT_BUTTON_CSS).click();
+        return this;
+    }
+
+    public InviteModalPage clickCopyLinkButton(){
+        $(COPY_LINK_BUTTON_CSS).shouldBe(Condition.visible);
+        $(COPY_LINK_BUTTON_CSS).click();
+        clearCache();
         return this;
     }
 }

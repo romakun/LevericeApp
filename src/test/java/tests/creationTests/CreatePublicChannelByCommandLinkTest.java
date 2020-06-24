@@ -16,7 +16,7 @@ public class CreatePublicChannelByCommandLinkTest extends BaseTest {
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
         wsElementsSteps
-                .checkCreationAndOpen("NewFolderrr")
+                .checkChannelOpened("NewFolderrr")
                 .openElementTree("NewFolderrr");
     }
 
@@ -29,6 +29,6 @@ public class CreatePublicChannelByCommandLinkTest extends BaseTest {
                 .typeName("NewChannel")
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
-        wsElementsSteps.checkCreationAndOpen("NewChannel");
+        wsElementsSteps.checkChannelOpened("NewChannel");
     }
 }

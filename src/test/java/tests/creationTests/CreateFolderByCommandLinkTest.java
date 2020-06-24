@@ -14,6 +14,6 @@ public class CreateFolderByCommandLinkTest extends BaseTest {
                 .typeName("NewFolder2")
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
-        wsElementsSteps.checkCreationAndOpen("NewFolder2");
+        wsElementsSteps.checkChannelOpened("NewFolder2");
     }
 }
