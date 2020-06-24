@@ -37,11 +37,11 @@ public class BaseTest {
             Assert.fail("Не удалось сохранить в файл данные пользователя");
         }
 
-        Configuration.headless = false;
+        Configuration.headless = true;
         Configuration.startMaximized = true;
         Configuration.clickViaJs = true;
         Configuration.screenshots = true;
-        Configuration.timeout = 6000;
+        Configuration.timeout = 60000;
         authSteps = new AuthorizationSteps();
         wsElementsSteps = new WorkSpaceElementsSteps();
         modalSteps = new CreateModalSteps();
