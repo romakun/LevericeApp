@@ -40,11 +40,10 @@ public class AuthorizationPage extends BasePage {
     public AuthorizationPage isPageOpened() {
         try {
             $(TUTORIAL_IMAGE_CSS).shouldBe(Condition.visible);
-            return this;
         } catch (ElementShould e) {
             Assert.fail("Страница почему-то не загрузилась");
-            return null;
         }
+        return this;
     }
 
     public AuthorizationPage clickSignIn() {
