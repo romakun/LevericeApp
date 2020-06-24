@@ -47,8 +47,7 @@ public class SendMessageOtherUserTest extends BaseTest {
                 .findMail(randomEmail)
                 .goToInvitationUrl()
                 .closeMailHog()
-                .fillInUserName(fName, lName)
-                .checkAuthorizationInLeverice();
+                .fillInUserName(fName, lName);
         wsElementsSteps
                 .openElementTree("direct")
                 .clickByMenuItem("First User");
