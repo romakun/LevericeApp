@@ -29,11 +29,10 @@ public class WorkSpaceChatElementsPage extends BasePage{
     public WorkSpaceChatElementsPage isPageOpened() {
         try {
             $(CONNECTION_INDICATOR_CSS).shouldBe(Condition.visible);
-            return this;
         } catch (ElementShould e) {
             Assert.fail("Страница почему-то не загрузилась");
-            return null;
         }
+        return this;
     }
 
     public WorkSpaceChatElementsPage clickByMenuItem(String itemName){
@@ -47,7 +46,11 @@ public class WorkSpaceChatElementsPage extends BasePage{
 
     public void creatingPopupOpened(String popupHeader){
         By POPUP_HEADER_LOCATOR = xpath(String.format(POPUP_HEADER, popupHeader));
-        $(POPUP_HEADER_LOCATOR).shouldBe(Condition.visible);
+        try {
+            $(POPUP_HEADER_LOCATOR).shouldBe(Condition.visible);
+        } catch (ElementShould e) {
+            Assert.fail("Заголовок не соответствует ожидаемому");
+        }
     }
 
     public void tutorialOpened(){
@@ -57,5 +60,14 @@ public class WorkSpaceChatElementsPage extends BasePage{
     public void channelOpened(String channelName){
         By CHANNEL_NAME_LOCATOR = xpath(String.format(CHANNEL_NAME, channelName));
         $(CHANNEL_NAME_LOCATOR).shouldBe(Condition.visible);
+    }
+
+    public boolean checkMutedChannel(String channel) {
+        return  wsElement.findElementMutedIcon(channel);
+    }
+
+    public WorkSpaceChatElementsPage openElementTree(String channel){
+        wsElement.toggleElement(channel);
+        return this;
     }
 }

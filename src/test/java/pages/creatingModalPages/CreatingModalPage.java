@@ -23,7 +23,6 @@ public class CreatingModalPage extends BasePage {
     private static final String CANCEL_BUTTON_CSS = ".button-cancel";
     private static final String ACCEPT_BUTTON_CSS = ".button-accept";
     private static final String SORT_SUBCHANNELS_DROPDOWN_CSS = ".dropdown-list";
-    private static final String WINDOW_HEADER_CSS = ".window-caption-label";
     private static final String MAKE_FOLDER_PRIVATE_TOGGLE_CSS = ".toggle";
 
     private String Creating_Public_Channel = "Creating Public Channel";
@@ -42,14 +41,14 @@ public class CreatingModalPage extends BasePage {
     public CreatingModalPage isPageOpened() {
         try {
             $(WINDOW_HEADER_ICON_CSS).shouldBe(Condition.visible);
-            return this;
         } catch (ElementShould e) {
             Assert.fail("Страница почему-то не загрузилась");
-            return null;
         }
+        return this;
     }
 
     public CreatingModalPage fillInName(String name) {
+        $(ADD_A_NAME_TEXTAREA_XPATH).shouldBe(Condition.visible);
         $(ADD_A_NAME_TEXTAREA_XPATH).setValue(name);
         return this;
     }
@@ -100,6 +99,12 @@ public class CreatingModalPage extends BasePage {
     }
 
     public CreatingModalPage clickAcceptButton() {
+        try{
+            $(ACCEPT_BUTTON_CSS).shouldBe(Condition.visible);
+            $(ACCEPT_BUTTON_CSS).click();
+        } catch (ElementShould e) {
+            Assert.fail("Кнопка accept недоступна");
+        }
         return this;
     }
 

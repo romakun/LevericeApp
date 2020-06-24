@@ -17,6 +17,7 @@ import java.util.Properties;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.id;
+import static org.openqa.selenium.By.xpath;
 
 
 public class MailHogPage extends BasePage {
@@ -26,6 +27,7 @@ public class MailHogPage extends BasePage {
     private static final String EMAILS_CSS = ".msglist-message";
     private static final String VALIDATION_CODE_CSS = ".validation-code";
     private static final By MAIL_IFRAME_ID = id("preview-html");
+    private static final By INVITE_URL_LOCATOR = xpath("//a[@data-url='invite' and contains(text(),'Join')]");
 
 
     Properties properties = new Properties();
@@ -63,7 +65,6 @@ public class MailHogPage extends BasePage {
     }
 
     public MailHogPage getValidationCode() {
-        switchTo().frame($(MAIL_IFRAME_ID));
         try {
             properties.setProperty("validationCode", $(VALIDATION_CODE_CSS).getText());
             properties.storeToXML(Files.newOutputStream(path), "File with user email && code");
@@ -73,8 +74,25 @@ public class MailHogPage extends BasePage {
         return this;
     }
 
+    public MailHogPage switchToMailFrame(){
+        switchTo().frame($(MAIL_IFRAME_ID));
+        return this;
+    }
+
     public void closeMailHogTab() {
         Selenide.closeWindow();
         switchTo().window(0);
     }
+
+    public MailHogPage openNewWindow() {
+        open(URL);
+        isPageOpened();
+        return this;
+    }
+
+    public MailHogPage goToInvitationUrl(){
+        $(INVITE_URL_LOCATOR).click();
+        return this;
+    }
+
 }

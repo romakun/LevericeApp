@@ -4,7 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import steps.AuthorizationSteps;
+import steps.*;
 import tests.base.TestListener;
 
 import java.nio.file.Files;
@@ -15,7 +15,11 @@ import java.util.Properties;
 @Listeners(TestListener.class)
 public class BaseTest {
 
-    AuthorizationSteps authSteps;
+    public AuthorizationSteps authSteps;
+    public WorkSpaceElementsSteps wsElementsSteps;
+    public CreateModalSteps modalSteps;
+    public SettingSteps setSteps;
+    public InviteSteps invSteps;
 
     Properties userProp = new Properties();
     Properties codeProp = new Properties();
@@ -36,8 +40,12 @@ public class BaseTest {
         Configuration.startMaximized = true;
         Configuration.clickViaJs = true;
         Configuration.screenshots = true;
-        Configuration.timeout = 600000000;
+        Configuration.timeout = 6000;
         authSteps = new AuthorizationSteps();
+        wsElementsSteps = new WorkSpaceElementsSteps();
+        modalSteps = new CreateModalSteps();
+        setSteps = new SettingSteps();
+        invSteps = new InviteSteps();
     }
 
     @BeforeMethod(description = "Precondition - Авторизация в Leverice")
@@ -49,7 +57,10 @@ public class BaseTest {
         }
         authSteps
                 .signIn(userProp.getProperty("userEmail"))
-                .getEmailCodeOutOfMailHog(userProp.getProperty("userEmail"));
+                .openMailHog()
+                .findMail(userProp.getProperty("userEmail"))
+                .getEmailCodeOutOfMailHog()
+                .closeMailHog();
         try {
             codeProp.loadFromXML(Files.newInputStream(codeFile));
         } catch (Exception e) {
@@ -58,7 +69,7 @@ public class BaseTest {
         authSteps.enterCode(codeProp.getProperty("validationCode"));
         if (authSteps.checkPage()) {
             authSteps
-                    .fillInUserNames("First", "User")
+                    .fillInUserName("First", "User")
                     .clickCreateWorkspace()
                     .fillInWorkSpaceName(userProp.getProperty("workSpaceName"))
                     .checkAuthorizationInLeverice();

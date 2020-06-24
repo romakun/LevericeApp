@@ -26,12 +26,36 @@ public class AuthorizationSteps {
     }
 
     @Step
-    public AuthorizationSteps getEmailCodeOutOfMailHog(String userEmail) {
+    public AuthorizationSteps openMailHog(){
+        mailHog.openPage();
+        return this;
+    }
+
+    @Step
+    public AuthorizationSteps findMail(String userEmail){
+        mailHog.findEmail(userEmail);
+        return this;
+    }
+
+    @Step
+    public AuthorizationSteps getEmailCodeOutOfMailHog() {
         mailHog
-                .openPage()
-                .findEmail(userEmail)
-                .getValidationCode()
-                .closeMailHogTab();
+                .switchToMailFrame()
+                .getValidationCode();
+        return this;
+    }
+
+    @Step
+    public AuthorizationSteps goToInvitationUrl() {
+        mailHog
+                .switchToMailFrame()
+                .goToInvitationUrl();
+        return this;
+    }
+
+    @Step
+    public AuthorizationSteps closeMailHog(){
+        mailHog.closeMailHogTab();
         return this;
     }
 
@@ -42,7 +66,7 @@ public class AuthorizationSteps {
     }
 
     @Step
-    public AuthorizationSteps fillInUserNames(String fname, String lname) {
+    public AuthorizationSteps fillInUserName(String fname, String lname) {
         authPage
                 .fillInUserNames(fname, lname)
                 .clickButton();
@@ -79,4 +103,10 @@ public class AuthorizationSteps {
         authPage.checkAuthorization();
     }
 
+    @Step
+
+    public AuthorizationSteps openNewWindow(){
+        mailHog.openNewWindow();
+        return this;
+    }
 }
