@@ -25,19 +25,19 @@ public class AuthorizationSteps {
         return this;
     }
 
-    @Step
+    @Step("Открываем mailHog")
     public AuthorizationSteps openMailHog(){
         mailHog.openPage();
         return this;
     }
 
-    @Step
+    @Step("Находим наш email")
     public AuthorizationSteps findMail(String userEmail){
         mailHog.findEmail(userEmail);
         return this;
     }
 
-    @Step
+    @Step("Получаем код")
     public AuthorizationSteps getEmailCodeOutOfMailHog() {
         mailHog
                 .switchToMailFrame()
@@ -45,7 +45,7 @@ public class AuthorizationSteps {
         return this;
     }
 
-    @Step
+    @Step("Переходим по ссылке на инвайт")
     public AuthorizationSteps goToInvitationUrl() {
         mailHog
                 .switchToMailFrame()
@@ -53,19 +53,19 @@ public class AuthorizationSteps {
         return this;
     }
 
-    @Step
+    @Step("Закрываем mailHog")
     public AuthorizationSteps closeMailHog(){
         mailHog.closeMailHogTab();
         return this;
     }
 
-    @Step
+    @Step("Вводим код")
     public AuthorizationSteps enterCode(String code) {
         authPage.enterCode(code);
         return this;
     }
 
-    @Step
+    @Step("Вводим имя {fname} и фамилию {lname}")
     public AuthorizationSteps fillInUserName(String fname, String lname) {
         authPage
                 .fillInUserNames(fname, lname)
@@ -73,13 +73,13 @@ public class AuthorizationSteps {
         return this;
     }
 
-    @Step
+    @Step("Создаём workspace")
     public AuthorizationSteps clickCreateWorkspace() {
         authPage.clickCreateNewWorkspace();
         return this;
     }
 
-    @Step
+    @Step("Вводим имя workspace - {workName}")
     public AuthorizationSteps fillInWorkSpaceName(String workName) {
         authPage
                 .fillInWorkspaceName(workName)
@@ -87,24 +87,23 @@ public class AuthorizationSteps {
         return this;
     }
 
-    @Step
+    @Step("Входим в {workSpaceName}")
     public AuthorizationSteps enterInMySpace(String workSpaceName) {
         authPage.enterInMyWorkSpace(workSpaceName);
         return this;
     }
 
-    @Step
+    @Step("Проверяем текст на странице")
     public boolean checkPage() {
         return authPage.checkPage();
     }
 
-    @Step
+    @Step("Проверяем авторизацию")
     public void checkAuthorizationInLeverice() {
         authPage.checkAuthorization();
     }
 
-    @Step
-
+    @Step("Открываем новое окно")
     public AuthorizationSteps openNewWindow(){
         mailHog.openNewWindow();
         return this;
