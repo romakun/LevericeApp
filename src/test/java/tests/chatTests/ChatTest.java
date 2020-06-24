@@ -28,5 +28,6 @@ public class ChatTest extends BaseTest {
     @Test (description = "Тест на цитирование другого сообщения", priority = 5)
     public void quoteMessage () {
         chatSteps.quoteMessage();
+        chatSteps.clearChat();
     }
 }
