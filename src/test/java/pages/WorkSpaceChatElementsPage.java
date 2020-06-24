@@ -3,12 +3,14 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;
 import elements.WorkSpaceChatElements;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.xpath;
 
+@Log4j2
 public class WorkSpaceChatElementsPage extends BasePage{
 
     private static final String CONNECTION_INDICATOR_CSS = ".connection-indicator.green";
@@ -27,6 +29,7 @@ public class WorkSpaceChatElementsPage extends BasePage{
 
     @Override
     public WorkSpaceChatElementsPage isPageOpened() {
+        log.info("Открылась ли страница");
         try {
             $(CONNECTION_INDICATOR_CSS).shouldBe(Condition.visible);
         } catch (ElementShould e) {
@@ -36,6 +39,7 @@ public class WorkSpaceChatElementsPage extends BasePage{
     }
 
     public WorkSpaceChatElementsPage clickByMenuItem(String itemName){
+        log.info("Выбираем айтем " + itemName);
         wsElement.clickByElement(itemName);
         return this;
     }
@@ -45,6 +49,7 @@ public class WorkSpaceChatElementsPage extends BasePage{
     }
 
     public void creatingPopupOpened(String popupHeader){
+        log.info("Проверяем на наличие " + popupHeader);
         By POPUP_HEADER_LOCATOR = xpath(String.format(POPUP_HEADER, popupHeader));
         try {
             $(POPUP_HEADER_LOCATOR).shouldBe(Condition.visible);
@@ -58,6 +63,7 @@ public class WorkSpaceChatElementsPage extends BasePage{
     }
 
     public void channelOpened(String channelName){
+        log.info("Проверяем открыт ли канал " + channelName);
         By CHANNEL_NAME_LOCATOR = xpath(String.format(CHANNEL_NAME, channelName));
         $(CHANNEL_NAME_LOCATOR).shouldBe(Condition.visible);
     }
@@ -67,6 +73,7 @@ public class WorkSpaceChatElementsPage extends BasePage{
     }
 
     public WorkSpaceChatElementsPage openElementTree(String channel){
+        log.info("Проверяем collapse/expand");
         wsElement.toggleElement(channel);
         return this;
     }

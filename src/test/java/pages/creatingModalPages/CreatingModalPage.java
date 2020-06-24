@@ -2,6 +2,8 @@ package pages.creatingModalPages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;
+import jdk.nashorn.internal.runtime.logging.Logger;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.BasePage;
@@ -11,6 +13,7 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.xpath;
 
+@Log4j2
 public class CreatingModalPage extends BasePage {
 
     private static final String WINDOW_HEADER_ICON_CSS = ".window__header-icon";
@@ -37,12 +40,14 @@ public class CreatingModalPage extends BasePage {
 
     @Override
     public CreatingModalPage openPage() {
+        log.info("Открываем modal page");
         isPageOpened();
         return this;
     }
 
     @Override
     public CreatingModalPage isPageOpened() {
+        log.info("Открылась ли modalpage");
         try {
             $(WINDOW_HEADER_ICON_CSS).shouldBe(Condition.visible);
         } catch (ElementShould e) {
@@ -52,12 +57,14 @@ public class CreatingModalPage extends BasePage {
     }
 
     public CreatingModalPage fillInName(String name) {
+        log.info("Вводим имя " + name);
         $(ADD_A_NAME_TEXTAREA_XPATH).shouldBe(Condition.visible);
         $(ADD_A_NAME_TEXTAREA_XPATH).setValue(name);
         return this;
     }
 
     public CreatingModalPage fillInDescription(String description) {
+        log.info("Вводим описание " + description);
         $(ADD_DESCRIPTION_TEXTAREA_XPATH).setValue(description);
         return this;
     }
@@ -125,18 +132,21 @@ public class CreatingModalPage extends BasePage {
     }
 
     public CreatingModalPage clickByRequiredInput() {
+        log.info("Кликаем по полю выбора пользователей");
         $(NEW_DIRECT_REQUIRED_INPUT_CSS).shouldBe(Condition.visible);
         $(NEW_DIRECT_REQUIRED_INPUT_CSS).click();
         return this;
     }
 
     public CreatingModalPage chooseUserForNewDirect(String userName) {
+        log.info("Выбираем пользователя для директа с именем " + userName);
         By userNameXpath = xpath(String.format(userNameLocator, userName));
         $(userNameXpath).click();
         return this;
     }
 
     public CreatingModalPage checkUserAddedToInput(String userName) {
+        log.info("Проверяем добавлен ли пользователь по имени " + userName);
         $(NEW_DIRECT_REQUIRED_INPUT_CSS).find(withText(userName)).shouldBe(Condition.visible);
         return this;
     }

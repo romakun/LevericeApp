@@ -3,6 +3,7 @@ package pages.authorizationPages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.BasePage;
@@ -17,6 +18,7 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.By.name;
 import static org.openqa.selenium.By.xpath;
 
+@Log4j2
 public class AuthorizationPage extends BasePage {
 
     private static final String URL = "https://autotest.leverice.net/public/client";
@@ -35,6 +37,7 @@ public class AuthorizationPage extends BasePage {
 
     @Override
     public AuthorizationPage openPage() {
+        log.info("Открываем " + URL);
         open(URL);
         isPageOpened();
         return this;
@@ -42,6 +45,7 @@ public class AuthorizationPage extends BasePage {
 
     @Override
     public AuthorizationPage isPageOpened() {
+        log.info("Загрузилась ли " + URL);
         try {
             $(TUTORIAL_IMAGE_CSS).shouldBe(Condition.visible);
         } catch (ElementShould e) {
@@ -51,30 +55,35 @@ public class AuthorizationPage extends BasePage {
     }
 
     public AuthorizationPage clickSignIn() {
+        log.info("Кликаем по входу");
         $(BUTTON_SIGN_IN_XPATH).shouldBe(Condition.visible);
         $(BUTTON_SIGN_IN_XPATH).click();
         return this;
     }
 
     public AuthorizationPage enterEmail(String email) {
+        log.info("Вводим email " + email);
         $(EMAIL_INPUT).shouldBe(Condition.visible);
         $(EMAIL_INPUT).setValue(email);
         return this;
     }
 
     public AuthorizationPage clickButton() {
+        log.info("Кликаем на следующий шаг");
         $(ACTIVE_BUTTON_NEXT_STEP).shouldBe(Condition.visible);
         $(ACTIVE_BUTTON_NEXT_STEP).click();
         return this;
     }
 
     public AuthorizationPage enterCode(String code) {
+        log.info("Вводим код " + code);
         $(INPUT_VALIDATION_CODE).shouldBe(Condition.visible);
         $(INPUT_VALIDATION_CODE).setValue(code);
         return this;
     }
 
     public AuthorizationPage fillInUserNames(String fname, String lname) {
+        log.info("Вводим имя и фамилию " + fname + " и " + lname);
         $(FIRST_NAME_INPUT).shouldBe(Condition.visible);
         $(FIRST_NAME_INPUT).setValue(fname);
         $(LAST_NAME_INPUT).shouldBe(Condition.visible);
@@ -83,18 +92,21 @@ public class AuthorizationPage extends BasePage {
     }
 
     public AuthorizationPage fillInWorkspaceName(String workName) {
+        log.info("Вводим имя воркспейса " + workName);
         $(INPUT_WORKSPACE_NAME_CSS).shouldBe(Condition.visible);
         $(INPUT_WORKSPACE_NAME_CSS).setValue(workName);
         return this;
     }
 
     public AuthorizationPage clickCreateNewWorkspace() {
+        log.info("Создаём воркспейс");
         $(withText(CREATE_NEW_WORKSPACE_LINK_TEXT)).shouldBe(Condition.visible);
         $(withText(CREATE_NEW_WORKSPACE_LINK_TEXT)).click();
         return this;
     }
 
     public AuthorizationPage enterInMyWorkSpace(String workSpaceName) {
+        log.info("Входим в воркспейс");
         $(withText(workSpaceName)).shouldBe(Condition.visible);
         $(withText(workSpaceName)).click();
         return this;
@@ -107,6 +119,7 @@ public class AuthorizationPage extends BasePage {
     }
 
     public boolean checkPage() {
+        log.info("Загрузилась ли страница");
         $(PAGE_HEADER_CSS).shouldBe(Condition.visible);
         return $(PAGE_HEADER_CSS).getText().equals("Introduce yourself");
     }
@@ -122,6 +135,7 @@ public class AuthorizationPage extends BasePage {
     }
 
     public AuthorizationPage openInvitationLink(){
+        log.info("Открываем ссыщку на приглашение");
         open(onPaste());
         return this;
     }
