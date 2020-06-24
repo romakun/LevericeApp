@@ -41,7 +41,7 @@ public class BaseTest {
         Configuration.startMaximized = true;
         Configuration.clickViaJs = true;
         Configuration.screenshots = true;
-        Configuration.timeout = 60000;
+        Configuration.timeout = 6000000;
         authSteps = new AuthorizationSteps();
         wsElementsSteps = new WorkSpaceElementsSteps();
         modalSteps = new CreateModalSteps();
