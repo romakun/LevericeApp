@@ -22,7 +22,7 @@ public class ChatPage extends BasePage {
     @Override
     public ChatPage openPage() {
         isPageOpened();
-        return null;
+        return this;
     }
 
     @Step("Открылся ли чат")

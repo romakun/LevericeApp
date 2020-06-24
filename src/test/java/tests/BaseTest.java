@@ -27,7 +27,7 @@ public class BaseTest {
     Path userFile = Paths.get("src/test/resources/userData.xml");
     Path codeFile = Paths.get("src/test/resources/userValidationCode.xml");
 
-    @BeforeClass
+    @BeforeClass()
     public void setupDriver() {
         userProp.setProperty("userEmail", "4ilibumba@mailinator.com");
         userProp.setProperty("workSpaceName", "MyTestWorkSpace");
@@ -48,9 +48,10 @@ public class BaseTest {
         setSteps = new SettingSteps();
         invSteps = new InviteSteps();
         chatSteps = new ChatSteps();
+
+        authorizeInLeverice();
     }
 
-    @BeforeMethod(description = "Precondition - Авторизация в Leverice")
     public void authorizeInLeverice() {
         try {
             userProp.loadFromXML(Files.newInputStream(userFile));
