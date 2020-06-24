@@ -11,7 +11,7 @@ public class CreateModalSteps {
         modalPage = new CreatingModalPage();
     }
 
-    @Step
+    @Step("Вводим название папки - {folderName}")
     public CreateModalSteps typeName(String folderName){
         modalPage
                 .isPageOpened()
@@ -19,7 +19,7 @@ public class CreateModalSteps {
         return this;
     }
 
-    @Step
+    @Step("Вводим описание - {folderDescription}")
     public CreateModalSteps typeDescription(String folderDescription){
         modalPage
                 .openOptions()
@@ -27,7 +27,7 @@ public class CreateModalSteps {
         return this;
     }
 
-    @Step
+    @Step("Сохраняем изменения")
     public CreateModalSteps clickAccept(){
         modalPage.clickAcceptButton();
         return this;
