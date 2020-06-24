@@ -2,7 +2,6 @@ package pages.creatingModalPages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;
-import jdk.nashorn.internal.runtime.logging.Logger;
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.testng.Assert;
