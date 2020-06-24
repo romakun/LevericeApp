@@ -12,7 +12,6 @@ public class ChatPage extends BasePage {
 
     private static final By MESSAGE_SENT = By.cssSelector(".message-render");
     private static final By INPUT_MESSAGE_FIELD = By.id("input-message");
-    private static final By ATTACH = By.id("file-input");
     private static final By EMOJI = By.xpath("//div[@class='clickable']");
     private static final By SEND_MESSAGE_BUTTON = By.xpath("//div[@class='send-button active']");
     private static final By DELETE_MESSAGE = By.xpath("//div[@data-original-title='Delete Post']");
@@ -76,14 +75,5 @@ public class ChatPage extends BasePage {
         $(MESSAGE_SENT).shouldNot(Condition.exist);
         return this;
     }
-
-    @Step("Прикрепляем файл с путём {filePath}")
-    public ChatPage attachFile (String filePath) {
-        $(ATTACH).sendKeys(filePath);
-        $(By.className("attachments")).shouldBe(Condition.visible);
-        $(SEND_MESSAGE_BUTTON).click();
-        assertTrue($(MESSAGE_SENT).isDisplayed(), "The attached file wasn't sent");
-        return this;
-    } //не могу разобраться как сделать этот метод
 
 }

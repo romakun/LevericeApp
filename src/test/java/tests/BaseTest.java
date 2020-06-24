@@ -20,6 +20,7 @@ public class BaseTest {
     public CreateModalSteps modalSteps;
     public SettingSteps setSteps;
     public InviteSteps invSteps;
+    public ChatSteps chatSteps;
 
     Properties userProp = new Properties();
     Properties codeProp = new Properties();
@@ -46,6 +47,7 @@ public class BaseTest {
         modalSteps = new CreateModalSteps();
         setSteps = new SettingSteps();
         invSteps = new InviteSteps();
+        chatSteps = new ChatSteps();
     }
 
     @BeforeMethod(description = "Precondition - Авторизация в Leverice")
