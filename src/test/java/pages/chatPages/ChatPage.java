@@ -1,6 +1,7 @@
 package pages.chatPages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import pages.BasePage;
@@ -46,8 +47,9 @@ public class ChatPage extends BasePage {
     @Step("Отправляем эмоджи")
     public ChatPage sendEmoji () {
         $(EMOJI).hover().click();
-        $(xpath("//span[@data-title='grinning']")).hover().click();
-        $(SEND_MESSAGE_BUTTON).click();
+
+        $(By.xpath("//span[@data-title='grinning']")).hover().click();
+        $(SEND_MESSAGE_BUTTON).hover().click();
         assertTrue($(MESSAGE_SENT).isDisplayed(), "The emoji wasn't sent");
         return this;
     }
