@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import pages.BasePage;
 
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.sleep;
 import static org.openqa.selenium.By.xpath;
 import static org.testng.Assert.assertTrue;
 
@@ -100,6 +101,18 @@ public class ChatPage extends BasePage {
         log.info("Проверяем что сообщение пришло от другого пользователя");
         By incomeMessage = xpath(SENDER_NAME_LOCATOR + String.format(SENDER_MESSAGE_LOCATOR, message));
         $(incomeMessage).shouldBe(Condition.visible);
+        return this;
+    }
+
+    public ChatPage clearChat () {
+        log.info("Чистим чат");
+        $(MESSAGE_SENT).hover();
+        $(DELETE_MESSAGE).hover().click();
+        sleep(3000);
+        $(MESSAGE_SENT).hover();
+        $(DELETE_MESSAGE).hover().click();
+        log.info("Проверяем удалились ли сообщение");
+        $(MESSAGE_SENT).shouldNot(Condition.exist);
         return this;
     }
 

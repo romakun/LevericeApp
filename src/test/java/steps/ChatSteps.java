@@ -33,4 +33,8 @@ public class ChatSteps {
     public void checkIncomeMessage (String message) {
         chatPage.checkUserMessage(message);
     }
+
+    public void clearChat () {
+        chatPage.clearChat();
+    }
 }
