@@ -28,6 +28,7 @@ public class WorkSpaceChatElements {
     public void toggleElement(String elementName){
         By elementLocator = xpath(String.format(element, elementName) + elementToggle);
         $(elementLocator).shouldBe(Condition.visible);
+        $(elementLocator).click();
     }
 
     public boolean findElementMutedIcon(String elementName) {

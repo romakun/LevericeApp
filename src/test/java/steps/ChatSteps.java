@@ -29,4 +29,8 @@ public class ChatSteps {
     public void quoteMessage () {
         chatPage.openPage().quoteMessage();
     }
+
+    public void checkIncomeMessage (String message) {
+        chatPage.checkUserMessage(message);
+    }
 }

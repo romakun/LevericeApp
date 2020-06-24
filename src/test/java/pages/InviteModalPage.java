@@ -15,6 +15,7 @@ public class InviteModalPage extends BasePage{
     private static final By EMAIL_INPUT = xpath("//textarea[contains(@placeholder,'Enter email')]");
     private static final String ACTIVE_ACCEPT_BUTTON_CSS = ".wizard-modal__inner .action-button.active";
     private static final String COPY_LINK_BUTTON_CSS = ".apply-button";
+    private static final String INVITE_WINDOW_SCC = ".wizard-modal__inner";
 
     @Override
     public InviteModalPage openPage() {
@@ -41,6 +42,7 @@ public class InviteModalPage extends BasePage{
     public InviteModalPage clickInviteButton(){
         $(ACTIVE_ACCEPT_BUTTON_CSS).find(withText("Invite")).shouldBe(Condition.visible);
         $(ACTIVE_ACCEPT_BUTTON_CSS).click();
+        $(INVITE_WINDOW_SCC).shouldNot(Condition.visible);
         return this;
     }
 
@@ -50,4 +52,5 @@ public class InviteModalPage extends BasePage{
         clearCache();
         return this;
     }
+
 }

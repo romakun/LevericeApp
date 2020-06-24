@@ -6,17 +6,20 @@ import org.openqa.selenium.By;
 import pages.BasePage;
 
 import static com.codeborne.selenide.Selenide.$;
+import static org.openqa.selenium.By.xpath;
 import static org.testng.Assert.assertTrue;
 
 public class ChatPage extends BasePage {
 
     private static final By MESSAGE_SENT = By.cssSelector(".message-render");
     private static final By INPUT_MESSAGE_FIELD = By.id("input-message");
-    private static final By EMOJI = By.xpath("//div[@class='clickable']");
-    private static final By SEND_MESSAGE_BUTTON = By.xpath("//div[@class='send-button active']");
-    private static final By DELETE_MESSAGE = By.xpath("//div[@data-original-title='Delete Post']");
-    private static final By EDIT_MESSAGE = By.xpath("//div[@data-original-title='Edit Post']");
-    private static final By QUOTE_MESSAGE = By.xpath("//div[@data-original-title='Quote Post']");
+    private static final By EMOJI = xpath("//div[@class='clickable']");
+    private static final By SEND_MESSAGE_BUTTON = xpath("//div[@class='send-button active']");
+    private static final By DELETE_MESSAGE = xpath("//div[@data-original-title='Delete Post']");
+    private static final By EDIT_MESSAGE = xpath("//div[@data-original-title='Edit Post']");
+    private static final By QUOTE_MESSAGE = xpath("//div[@data-original-title='Quote Post']");
+    private static final String SENDER_NAME_LOCATOR = "//div[@class='sender-name' and contains(text(),'First User')]";
+    String SENDER_MESSAGE_LOCATOR = "/../../..//p[contains(text(),'%s')]";
 
     @Step("Открываем чат")
     @Override
@@ -43,7 +46,7 @@ public class ChatPage extends BasePage {
     @Step("Отправляем эмоджи")
     public ChatPage sendEmoji () {
         $(EMOJI).hover().click();
-        $(By.xpath("//span[@data-title='grinning']")).hover().click();
+        $(xpath("//span[@data-title='grinning']")).hover().click();
         $(SEND_MESSAGE_BUTTON).click();
         assertTrue($(MESSAGE_SENT).isDisplayed(), "The emoji wasn't sent");
         return this;
@@ -73,6 +76,13 @@ public class ChatPage extends BasePage {
         $(MESSAGE_SENT).hover();
         $(DELETE_MESSAGE).hover().click();
         $(MESSAGE_SENT).shouldNot(Condition.exist);
+        return this;
+    }
+
+    @Step("Проверяем что от другого пользоваетля пришло сообщение")
+    public ChatPage checkUserMessage(String message){
+        By incomeMessage = xpath(SENDER_NAME_LOCATOR + String.format(SENDER_MESSAGE_LOCATOR, message));
+        $(incomeMessage).shouldBe(Condition.visible);
         return this;
     }
 
