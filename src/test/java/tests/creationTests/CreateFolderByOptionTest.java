@@ -16,6 +16,6 @@ public class CreateFolderByOptionTest extends BaseTest {
                 .typeName("NewFolder4")
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
-        wsElementsSteps.checkCreationAndOpen("NewFolder4");
+        wsElementsSteps.checkChannelOpened("NewFolder4");
     }
 }

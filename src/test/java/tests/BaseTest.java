@@ -56,7 +56,8 @@ public class BaseTest {
             Assert.fail("Не удалось загрузить файл с данными пользователя");
         }
         authSteps
-                .signIn(userProp.getProperty("userEmail"))
+                .signIn()
+                .typEmail(userProp.getProperty("userEmail"))
                 .openMailHog()
                 .findMail(userProp.getProperty("userEmail"))
                 .getEmailCodeOutOfMailHog()

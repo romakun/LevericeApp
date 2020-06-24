@@ -16,6 +16,6 @@ public class CreatePrivateChannelByOptionTest extends BaseTest {
                 .typeName("NewPrivateChannel")
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
-        wsElementsSteps.checkCreationAndOpen("NewPrivateChannel");
+        wsElementsSteps.checkChannelOpened("NewPrivateChannel");
     }
 }

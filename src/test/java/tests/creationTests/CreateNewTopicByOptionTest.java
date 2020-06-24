@@ -17,6 +17,6 @@ public class CreateNewTopicByOptionTest extends BaseTest {
                 .typeName("New Topic3")
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
-        wsElementsSteps.checkCreationAndOpen("New Topic3");
+        wsElementsSteps.checkChannelOpened("New Topic3");
     }
 }

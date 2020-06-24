@@ -19,7 +19,6 @@ import static com.codeborne.selenide.Selenide.*;
 import static org.openqa.selenium.By.id;
 import static org.openqa.selenium.By.xpath;
 
-
 public class MailHogPage extends BasePage {
 
     private static final String URL = "https://autotest.leverice.net/email/#";

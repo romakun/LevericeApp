@@ -16,6 +16,6 @@ public class CreatePublicChannelByOptionTest extends BaseTest {
                 .typeName("New")
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
-        wsElementsSteps.checkCreationAndOpen("New");
+        wsElementsSteps.checkChannelOpened("New");
     }
 }

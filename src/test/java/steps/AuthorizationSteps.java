@@ -15,24 +15,30 @@ public class AuthorizationSteps {
 
     }
 
-    @Step("Open Leverice and sign in with Email='{email}'")
-    public AuthorizationSteps signIn(String email) {
+    @Step("Open Leverice and sign in")
+    public AuthorizationSteps signIn() {
         authPage
                 .openPage()
-                .clickSignIn()
+                .clickSignIn();
+        return this;
+    }
+
+    @Step("Type Email='{email}'")
+    public AuthorizationSteps typEmail(String email) {
+        authPage
                 .enterEmail(email)
                 .clickButton();
         return this;
     }
 
     @Step
-    public AuthorizationSteps openMailHog(){
+    public AuthorizationSteps openMailHog() {
         mailHog.openPage();
         return this;
     }
 
     @Step
-    public AuthorizationSteps findMail(String userEmail){
+    public AuthorizationSteps findMail(String userEmail) {
         mailHog.findEmail(userEmail);
         return this;
     }
@@ -54,7 +60,7 @@ public class AuthorizationSteps {
     }
 
     @Step
-    public AuthorizationSteps closeMailHog(){
+    public AuthorizationSteps closeMailHog() {
         mailHog.closeMailHogTab();
         return this;
     }
@@ -104,9 +110,15 @@ public class AuthorizationSteps {
     }
 
     @Step
-
-    public AuthorizationSteps openNewWindow(){
+    public AuthorizationSteps openNewWindow() {
         mailHog.openNewWindow();
         return this;
     }
+
+    @Step
+    public AuthorizationSteps openInvitationLink(){
+        authPage.openInvitationLink();
+        return this;
+    }
+
 }

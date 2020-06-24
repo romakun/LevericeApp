@@ -6,6 +6,10 @@ import com.codeborne.selenide.ex.ElementShould;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.BasePage;
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
@@ -113,6 +117,23 @@ public class AuthorizationPage extends BasePage {
             return this;
         } catch (ElementShould e) {
             Assert.fail("Страница почему-то не загрузилась");
+            return null;
+        }
+    }
+
+    public AuthorizationPage openInvitationLink(){
+        open(onPaste());
+        return this;
+    }
+
+    private String onPaste(){
+        Toolkit toolkit = Toolkit.getDefaultToolkit();
+        Clipboard clipboard = toolkit.getSystemClipboard();
+
+        try {
+            return (String) clipboard.getData(DataFlavor.stringFlavor);
+        } catch (Exception e){
+            Assert.fail("Ничего не скопировали");
             return null;
         }
     }
