@@ -11,7 +11,7 @@ public class WorkSpaceElementsSteps {
         wsElementsPage = new WorkSpaceChatElementsPage();
     }
 
-    @Step
+    @Step("Выбираем айтем {itemName}")
     public WorkSpaceElementsSteps clickByMenuItem(String itemName) {
         wsElementsPage
                 .isPageOpened()
@@ -19,19 +19,19 @@ public class WorkSpaceElementsSteps {
         return this;
     }
 
-    @Step
+    @Step("Проверяем заголовок на наличие {header}")
     public WorkSpaceElementsSteps checkModalHeader(String header) {
         wsElementsPage.creatingPopupOpened(header);
         return this;
     }
 
-    @Step
+    @Step("Проверяем открытие канала")
     public WorkSpaceElementsSteps checkChannelOpened(String itemName) {
         wsElementsPage.channelOpened(itemName);
         return this;
     }
 
-    @Step
+    @Step("Кликаем collapse или expand с использованием стрелки возле названия канала")
     public WorkSpaceElementsSteps openElementTree(String itemName) {
         wsElementsPage.openElementTree(itemName);
         return this;

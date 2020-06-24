@@ -14,7 +14,7 @@ public class InviteSteps {
         dirPage = new DirectPage();
     }
 
-    @Step
+    @Step("Вводим email {email}")
     public InviteSteps typeEmailInInput(String email){
         invPage
                 .isPageOpened()
@@ -22,7 +22,7 @@ public class InviteSteps {
         return this;
     }
 
-    @Step
+    @Step("Кликаем по кнопке приглашения")
     public InviteSteps clickInviteButton(){
         invPage
                 .clickInviteButton();
