@@ -2,7 +2,7 @@ package steps;
 
 import io.qameta.allure.Step;
 import pages.InviteModalPage;
-import pages.chatPages.DirectPage;
+import pages.chat_pages.DirectPage;
 
 public class InviteSteps {
 

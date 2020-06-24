@@ -1,4 +1,4 @@
-package tests.inviteTests;
+package tests.invite_tests;
 
 import models.GenerateData;
 import org.testng.Assert;

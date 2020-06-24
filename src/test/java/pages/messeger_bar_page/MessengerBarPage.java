@@ -1,4 +1,4 @@
-package pages.messegerBarPage;
+package pages.messeger_bar_page;
 
 import lombok.extern.log4j.Log4j2;
 import pages.BasePage;

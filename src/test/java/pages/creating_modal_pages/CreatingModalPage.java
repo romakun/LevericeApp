@@ -1,4 +1,4 @@
-package pages.creatingModalPages;
+package pages.creating_modal_pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;

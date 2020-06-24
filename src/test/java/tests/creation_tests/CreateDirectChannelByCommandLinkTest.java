@@ -1,15 +1,16 @@
-package tests.creationTests;
+package tests.creation_tests;
 
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
-public class CreateDirectChannelByOptionTest extends BaseTest {
+public class CreateDirectChannelByCommandLinkTest extends BaseTest {
 
     @Test
-    public void createDirectChannelByOptionTest() {
+    public void createDirectChannelByCommandLinkTest() {
         setSteps
                 .openSettingsByContext("direct")
-                .clickByOption("New Direct");
+                .clickByOption("Expand");
+        wsElementsSteps.clickByMenuItem("Create new Direct Channel");
         modalSteps
                 .fillInNewDirectModal("First User")
                 .clickAccept();

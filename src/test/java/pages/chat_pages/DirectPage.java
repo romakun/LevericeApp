@@ -1,4 +1,4 @@
-package pages.chatPages;
+package pages.chat_pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementNotFound;

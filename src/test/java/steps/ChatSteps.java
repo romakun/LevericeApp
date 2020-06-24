@@ -1,6 +1,6 @@
 package steps;
 
-import pages.chatPages.ChatPage;
+import pages.chat_pages.ChatPage;
 
 public class ChatSteps {
 

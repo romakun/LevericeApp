@@ -1,21 +1,19 @@
-package tests.creationTests;
+package tests.creation_tests;
 
 import models.GenerateData;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
-public class CreateFolderByOptionTest extends BaseTest {
+public class CreateFolderByCommandLinkTest extends BaseTest {
 
     GenerateData randomData = new GenerateData();
     String folderName = randomData.generateRandomFolder();
 
     @Test
-    public void createFolderByOptionTest(){
-        setSteps
-                .openSettingsByIcon("MyTestWorkSpace")
-                .clickByOption("New")
-                .clickByOption("Folder");
-        wsElementsSteps.checkModalHeader("Creating Folder");
+    public void createFolderByCommandLinkTest(){
+        wsElementsSteps
+                .clickByMenuItem("Create new Folder")
+                .checkModalHeader("Creating Folder");
         modalSteps
                 .typeName(folderName)
                 .typeDescription("Bla Bla Bla")

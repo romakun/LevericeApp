@@ -1,4 +1,4 @@
-package pages.accountSettings;
+package pages.account_settings;
 
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;

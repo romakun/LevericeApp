@@ -1,4 +1,4 @@
-package pages.channelSettingsPages;
+package pages.channel_settings_pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;

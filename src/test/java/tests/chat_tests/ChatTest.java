@@ -1,4 +1,4 @@
-package tests.chatTests;
+package tests.chat_tests;
 
 import org.testng.annotations.Test;
 import tests.BaseTest;

@@ -1,4 +1,4 @@
-package tests.creationTests;
+package tests.creation_tests;
 
 import models.GenerateData;
 import org.testng.annotations.BeforeMethod;

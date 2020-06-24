@@ -1,4 +1,4 @@
-package pages.mailHogPages;
+package pages.mail_hog_pages;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;

@@ -1,7 +1,7 @@
 package steps;
 
 import io.qameta.allure.Step;
-import pages.creatingModalPages.CreatingModalPage;
+import pages.creating_modal_pages.CreatingModalPage;
 
 public class CreateModalSteps {
 

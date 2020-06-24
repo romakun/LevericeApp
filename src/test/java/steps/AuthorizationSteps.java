@@ -1,8 +1,8 @@
 package steps;
 
 import io.qameta.allure.Step;
-import pages.authorizationPages.*;
-import pages.mailHogPages.MailHogPage;
+import pages.authorization_pages.*;
+import pages.mail_hog_pages.MailHogPage;
 
 public class AuthorizationSteps {
 

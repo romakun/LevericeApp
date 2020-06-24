@@ -1,7 +1,7 @@
 package steps;
 
 import io.qameta.allure.Step;
-import pages.channelSettingsPages.SettingsPage;
+import pages.channel_settings_pages.SettingsPage;
 
 public class SettingSteps {
 

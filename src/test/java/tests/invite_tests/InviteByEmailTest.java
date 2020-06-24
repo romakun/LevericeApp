@@ -1,4 +1,4 @@
-package tests.inviteTests;
+package tests.invite_tests;
 
 import com.codeborne.selenide.Selenide;
 import models.GenerateData;

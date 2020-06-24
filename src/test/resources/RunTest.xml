@@ -3,7 +3,7 @@
 <suite thread-count="1" name="inviteTests">
     <test name="inviteTests">
         <classes>
-            <class name="tests.inviteTests.InviteByEmailTest"/>
+            <class name="tests.invite_tests.InviteByEmailTest"/>
         </classes>
     </test> <!-- Test -->
 </suite>

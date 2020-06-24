@@ -1,4 +1,4 @@
-package tests.chatTests;
+package tests.chat_tests;
 
 import com.codeborne.selenide.Selenide;
 import models.GenerateData;

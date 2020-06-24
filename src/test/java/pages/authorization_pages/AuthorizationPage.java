@@ -1,4 +1,4 @@
-package pages.authorizationPages;
+package pages.authorization_pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementShould;
@@ -10,7 +10,6 @@ import pages.BasePage;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
-import java.awt.datatransfer.Transferable;
 
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
