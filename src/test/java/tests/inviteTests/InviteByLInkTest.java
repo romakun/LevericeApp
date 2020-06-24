@@ -1,5 +1,6 @@
 package tests.inviteTests;
 
+import models.GenerateData;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import tests.BaseTest;
@@ -11,6 +12,11 @@ import java.util.Properties;
 
 public class InviteByLInkTest extends BaseTest {
 
+    GenerateData randomData = new GenerateData();
+    String randomEmail = randomData.generateRandomEmail();
+    String fName = randomData.generateRandomUserFirstName();
+    String lName = randomData.generateRandomUserLastName();
+
     Properties codeProp = new Properties();
     Path codeFile = Paths.get("src/test/resources/userValidationCode.xml");
 
@@ -21,9 +27,9 @@ public class InviteByLInkTest extends BaseTest {
         invSteps.clickCopyLinkButton();
         authSteps
                 .openInvitationLink()
-                .typEmail("shakalaka@mailinator.com")
+                .typEmail(randomEmail)
                 .openMailHog()
-                .findMail("shakalaka@mailinator.com")
+                .findMail(randomEmail)
                 .getEmailCodeOutOfMailHog()
                 .closeMailHog();
         try {
@@ -33,7 +39,7 @@ public class InviteByLInkTest extends BaseTest {
         }
         authSteps
                 .enterCode(codeProp.getProperty("validationCode"))
-                .fillInUserName("SHABA", "LABA")
+                .fillInUserName(fName, lName)
                 .checkAuthorizationInLeverice();
     }
 }

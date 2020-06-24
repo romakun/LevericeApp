@@ -1,9 +1,14 @@
 package tests.creationTests;
 
+import models.GenerateData;
 import org.testng.annotations.Test;
 import tests.BaseTest;
 
 public class CreatePublicChannelByOptionTest extends BaseTest {
+
+
+    GenerateData randomData = new GenerateData();
+    String channelName = randomData.generateRandomChannel();
 
     @Test
     public void createPublicChannelByOptionTest(){
@@ -13,9 +18,9 @@ public class CreatePublicChannelByOptionTest extends BaseTest {
                 .clickByOption("Public");
         wsElementsSteps.checkModalHeader("Creating Public Channel");
         modalSteps
-                .typeName("New")
+                .typeName(channelName)
                 .typeDescription("Bla Bla Bla")
                 .clickAccept();
-        wsElementsSteps.checkChannelOpened("New");
+        wsElementsSteps.checkChannelOpened(channelName);
     }
 }

@@ -32,4 +32,13 @@ public class CreateModalSteps {
         modalPage.clickAcceptButton();
         return this;
     }
+
+    @Step
+    public CreateModalSteps fillInNewDirectModal(String userName){
+        modalPage
+                .clickByRequiredInput()
+                .chooseUserForNewDirect(userName)
+                .checkUserAddedToInput(userName);
+        return this;
+    }
 }
