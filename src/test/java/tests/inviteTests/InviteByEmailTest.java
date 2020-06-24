@@ -34,6 +34,7 @@ public class InviteByEmailTest extends BaseTest {
                 .findMail(randomEmail)
                 .goToInvitationUrl()
                 .closeMailHog()
-                .fillInUserName(fName, lName);
+                .fillInUserName(fName, lName)
+                .checkAuthorizationInLeverice();
     }
 }
