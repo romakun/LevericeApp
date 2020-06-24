@@ -10,12 +10,13 @@
   - Lombok
  ****
 ### Packages:
+ - Elements
+ - Models
  - Pages
-   * BasePage
+ - Steps
  - Tests
-   * BaseTest
  - Utils
-    * AllureUtils 
+
  
 
 
