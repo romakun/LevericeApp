@@ -3,6 +3,7 @@ package pages.chatPages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import pages.BasePage;
 
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.xpath;
 import static org.testng.Assert.assertTrue;
 
+@Log4j2
 public class ChatPage extends BasePage {
 
     private static final By MESSAGE_SENT = By.cssSelector(".message-render");
@@ -25,6 +27,7 @@ public class ChatPage extends BasePage {
     @Step("Открываем чат")
     @Override
     public ChatPage openPage() {
+        log.info("Открываем чат");
         isPageOpened();
         return this;
     }
@@ -32,24 +35,29 @@ public class ChatPage extends BasePage {
     @Step("Открылся ли чат")
     @Override
     public ChatPage isPageOpened() {
+        log.info("Открылся ли чат");
         $(By.className("channel-name")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("Отправляем сообщение {message}")
     public ChatPage sendMessage (String message) {
+        log.info("Отправляем сообщение " + message);
         $(INPUT_MESSAGE_FIELD).setValue(message);
         $(SEND_MESSAGE_BUTTON).click();
+        log.info("Отправилось ли сообщение");
         assertTrue($(MESSAGE_SENT).isDisplayed(), "The message wasn't sent");
         return this;
     }
 
     @Step("Отправляем эмоджи")
     public ChatPage sendEmoji () {
+        log.info("Отправляем эмоджи");
         $(EMOJI).hover().click();
 
         $(By.xpath("//span[@data-title='grinning']")).hover().click();
         $(SEND_MESSAGE_BUTTON).hover().click();
+        log.info("Отправилось ли эмоджи");
         assertTrue($(MESSAGE_SENT).isDisplayed(), "The emoji wasn't sent");
         return this;
     }
@@ -58,31 +66,38 @@ public class ChatPage extends BasePage {
     public ChatPage editMessage (String newMessage) {
         $(MESSAGE_SENT).hover();
         $(EDIT_MESSAGE).hover().click();
+        log.info("Редактируем сообщение");
         $(INPUT_MESSAGE_FIELD).sendKeys(newMessage);
         $(SEND_MESSAGE_BUTTON).click();
+        log.info("Проверяем отредактировано ли сообщение");
         $(MESSAGE_SENT).should(Condition.matchText(newMessage));
         return this;
     }
 
     @Step("Цитируем сообщение")
     public ChatPage quoteMessage () {
+        log.info("Делаем quote на сообщении");
         $(MESSAGE_SENT).hover();
         $(QUOTE_MESSAGE).click();
         $(SEND_MESSAGE_BUTTON).click();
+        log.info("Было ли выполнено quote");
         $(By.tagName("blockquote")).shouldBe(Condition.visible);
         return this;
     }
 
     @Step("Удаляем сообщение")
     public ChatPage deleteMessage () {
+        log.info("Удаляем сообщение");
         $(MESSAGE_SENT).hover();
         $(DELETE_MESSAGE).hover().click();
+        log.info("Проверяем удалилось ли сообщение");
         $(MESSAGE_SENT).shouldNot(Condition.exist);
         return this;
     }
 
     @Step("Проверяем что от другого пользоваетля пришло сообщение")
     public ChatPage checkUserMessage(String message){
+        log.info("Проверяем что сообщение пришло от другого пользователя");
         By incomeMessage = xpath(SENDER_NAME_LOCATOR + String.format(SENDER_MESSAGE_LOCATOR, message));
         $(incomeMessage).shouldBe(Condition.visible);
         return this;

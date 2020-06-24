@@ -1,11 +1,13 @@
 package pages.accountSettings;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import pages.BasePage;
 
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.xpath;
 
+@Log4j2
 public class AccountSettingsPage extends BasePage {
     private static final String DEFAULT_BACKGROUND_CSS = ".default-background";
     private static final String CLOSE_WINDOW = ".close-window-icon";
@@ -18,6 +20,7 @@ public class AccountSettingsPage extends BasePage {
 
     @Override
     public AccountSettingsPage openPage() {
+        log.info("Открываем настройки аккаунта");
         isPageOpened();
         return this;
     }
@@ -56,6 +59,7 @@ public class AccountSettingsPage extends BasePage {
     }
 
     public AccountSettingsPage clickAccept() {
+        log.info("Нажимаем 'принять'");
         $(ACCEPT).click();
         return this;
     }

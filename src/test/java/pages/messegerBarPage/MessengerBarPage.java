@@ -1,9 +1,11 @@
 package pages.messegerBarPage;
 
+import lombok.extern.log4j.Log4j2;
 import pages.BasePage;
 
 import static com.codeborne.selenide.Selenide.$;
 
+@Log4j2
 public class MessengerBarPage extends BasePage {
     private static final String FILTER_TRIGGERS_CSS = ".filter-trigger";
     private static final String NOT_SUBSCRIBED_CHANNELS = ".show-not-subscribed-channels";
@@ -16,6 +18,7 @@ public class MessengerBarPage extends BasePage {
 
     @Override
     public MessengerBarPage openPage() {
+        log.info("Открываем messenger bar");
         isPageOpened();
         return this;
     }

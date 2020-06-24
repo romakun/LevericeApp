@@ -2,6 +2,7 @@ package pages.chatPages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ex.ElementNotFound;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.BasePage;
@@ -9,6 +10,7 @@ import pages.BasePage;
 import static com.codeborne.selenide.Selenide.$;
 import static org.openqa.selenium.By.xpath;
 
+@Log4j2
 public class DirectPage extends BasePage {
 
     String userEmailLocator = "//div[@class='user-email' and contains(text(),'%s')]";
@@ -26,6 +28,7 @@ public class DirectPage extends BasePage {
     }
 
     public DirectPage checkInviteUser(String userEmail){
+        log.info("Проверяем приглашён ли пользователь с email " + userEmail);
         $(SEARCH_INPUT_CSS).setValue(userEmail);
         By userInvitedLocator = xpath(String.format(userEmailLocator, userEmail) + userInvitedTextLocator);
         try {
