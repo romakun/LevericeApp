@@ -6,11 +6,14 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import steps.*;
 import tests.base.TestListener;
+import utils.Highlighter;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
+
+import static com.codeborne.selenide.WebDriverRunner.addListener;
 
 @Listeners(TestListener.class)
 public class BaseTest {
@@ -37,17 +40,19 @@ public class BaseTest {
             Assert.fail("Не удалось сохранить в файл данные пользователя");
         }
 
-        Configuration.headless = true;
+        Configuration.headless = false;
         Configuration.browserSize = "1920x1080";
         Configuration.clickViaJs = true;
         Configuration.screenshots = true;
         Configuration.timeout = 6000;
+        addListener(new Highlighter());
         authSteps = new AuthorizationSteps();
         wsElementsSteps = new WorkSpaceElementsSteps();
         modalSteps = new CreateModalSteps();
         setSteps = new SettingSteps();
         invSteps = new InviteSteps();
         chatSteps = new ChatSteps();
+
     }
 
     public void authorizeInLeverice() {

@@ -41,7 +41,7 @@ public class SendMessageOtherUserTest extends BaseTest {
                 .clickByMenuItem(randomEmail)
                 .checkChannelOpened(randomEmail);
         chatSteps.sendMessage("Hello bro!");
-        Selenide.closeWebDriver();
+        Selenide.clearBrowserLocalStorage();
         authSteps
                 .openNewWindow()
                 .findMail(randomEmail)

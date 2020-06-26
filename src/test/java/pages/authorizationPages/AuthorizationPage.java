@@ -1,12 +1,15 @@
 package pages.authorizationPages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.ex.ElementShould;
 
 import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import pages.BasePage;
+import utils.AllureUtils;
+
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
@@ -125,10 +128,13 @@ public class AuthorizationPage extends BasePage {
     }
 
     public AuthorizationPage checkAuthorization() {
+        log.info("Проверяем что пользователь авторизован");
         try {
             $(CONNECTION_INDICATOR_CSS).shouldBe(Condition.visible);
+            AllureUtils.takeScreenshot();
             return this;
         } catch (ElementShould e) {
+            AllureUtils.takeScreenshot();
             Assert.fail("Страница почему-то не загрузилась");
             return null;
         }

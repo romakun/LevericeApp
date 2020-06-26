@@ -26,9 +26,7 @@ public class InviteByEmailTest extends BaseTest {
                 .checkChannelOpened("direct");
         invSteps
                 .checkUserInvited(randomEmail);
-        Selenide.closeWebDriver();
-        setupDriver();
-        Configuration.browserSize = "1920x1080";
+        Selenide.clearBrowserLocalStorage();
         authSteps
                 .openNewWindow()
                 .findMail(randomEmail)
